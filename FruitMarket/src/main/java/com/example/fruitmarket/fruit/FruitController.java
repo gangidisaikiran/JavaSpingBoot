@@ -22,7 +22,7 @@ public class FruitController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public Fruit getFruit(@PathVariable String id) {
+	public Fruit getFruit(@PathVariable long id) {
 		return fruitService.getFruit(id);
 	}
 	
@@ -37,7 +37,7 @@ public class FruitController {
 	}
 	
 	@RequestMapping(method= RequestMethod.DELETE, value = "/{id}")
-	public void deleteFruit(@PathVariable String id) {
+	public void deleteFruit(@PathVariable long id) {
 		fruitService.deleteFruit(id);
 	}
 

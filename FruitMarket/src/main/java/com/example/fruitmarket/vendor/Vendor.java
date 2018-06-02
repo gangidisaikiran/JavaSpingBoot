@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -15,18 +16,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Vendor {
 	@Id
 	@Column(name = "VENDOR_ID")
-	private String id;
+	@GeneratedValue
+	private long id;
 	private String name;
 	private String description;
 	
-	@OneToMany(mappedBy = "vendor")
-	@JsonIgnore
+	@OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
 	private Set<VendorFruit> vendorFruits = new HashSet<VendorFruit>();
 
 	public Vendor() {
 		
 	}
-	public Vendor(String id, String name, String description, Set<VendorFruit> vendorFruits) {
+	public Vendor(long id, String name, String description, Set<VendorFruit> vendorFruits) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -34,11 +35,11 @@ public class Vendor {
 		this.vendorFruits = vendorFruits;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

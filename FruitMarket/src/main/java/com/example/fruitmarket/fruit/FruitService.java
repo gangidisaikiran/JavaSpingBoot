@@ -19,7 +19,7 @@ public class FruitService {
 		return fruits;
 	}
 
-	public Fruit getFruit(String id) {
+	public Fruit getFruit(long id) {
 		return fruitRepository.findById(id).get();
 		
 	}
@@ -28,7 +28,7 @@ public class FruitService {
 		fruitRepository.save(fruit);
 	}
 
-	public void deleteFruit(String id) {
+	public void deleteFruit(long id) {
 		fruitRepository.deleteById(id);
 	}
 

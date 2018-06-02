@@ -16,14 +16,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class VendorFruit {
 	@Id
 	@GeneratedValue
+	@JsonIgnore
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "VENDOR_ID")
 	@JsonIgnore
 	private Vendor vendor;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "FRUIT_ID")
 	private Fruit fruit;
 	

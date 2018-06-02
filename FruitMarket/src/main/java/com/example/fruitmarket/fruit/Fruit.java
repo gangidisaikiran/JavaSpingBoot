@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -17,10 +18,11 @@ public class Fruit {
 	
 	@Id
 	@Column(name = "FRUIT_ID")
-	private String id;
+	@GeneratedValue
+	private long id;
 	private String name;
 		
-	public Fruit(String id, String name) {
+	public Fruit(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -29,10 +31,10 @@ public class Fruit {
 	public Fruit() {
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {

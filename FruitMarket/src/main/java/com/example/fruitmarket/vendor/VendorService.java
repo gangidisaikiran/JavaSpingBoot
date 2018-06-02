@@ -27,7 +27,7 @@ public class VendorService {
 		return vendors;
 	}
 	
-	public Vendor getVendor(String id) {
+	public Vendor getVendor(long id) {
 		return vendorRepository.findById(id).get();
 	}
 
@@ -35,11 +35,10 @@ public class VendorService {
 		vendorRepository.save(vendor);
 	}
 
-	public void addFruits(String id, List<Fruit> fruits) {
+	public void addFruits(long id, List<VendorFruit> vendorFruits) {
 		Vendor vendor = vendorRepository.findById(id).get();
-		fruits.forEach(fruit -> {
-			VendorFruit vendorFruit = new VendorFruit();
-			vendorFruit.setFruit(fruitRepository.findById(fruit.getId()).get());
+		vendorFruits.forEach(vendorFruit -> {
+			vendorFruit.setFruit(fruitRepository.findById(vendorFruit.getFruit().getId()).get());
 			vendorFruit.setVendor(vendor);
 			vendorFruitRepository.save(vendorFruit);
 		});

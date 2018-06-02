@@ -25,7 +25,7 @@ public class VendorController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public Vendor get(@PathVariable String id) {
+	public Vendor get(@PathVariable long id) {
 		return vendorService.getVendor(id);
 	}
 	
@@ -35,7 +35,7 @@ public class VendorController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}/addFruits")
-	public void addFruits(@RequestBody List<Fruit> fruits, @PathVariable String id) {
+	public void addFruits(@RequestBody List<VendorFruit> fruits, @PathVariable long id) {
 		vendorService.addFruits(id, fruits);
 	}
 
