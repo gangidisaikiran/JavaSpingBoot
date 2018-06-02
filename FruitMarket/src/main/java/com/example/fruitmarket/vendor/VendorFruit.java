@@ -26,17 +26,21 @@ public class VendorFruit {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FRUIT_ID")
 	private Fruit fruit;
+	
+	private int quantity;
 
 	
 	public VendorFruit() {
 		
 	}
 	
-	public VendorFruit(long id, Vendor vendor, Fruit fruit) {
+	public VendorFruit(long id, Vendor vendor, Fruit fruit, int quantity) {
 		super();
 		this.id = id;
 		this.vendor = vendor;
 		this.fruit = fruit;
+		this.quantity = quantity;
+
 	}
 
 	public long getId() {
@@ -61,6 +65,13 @@ public class VendorFruit {
 
 	public void setFruit(Fruit fruit) {
 		this.fruit = fruit;
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 }

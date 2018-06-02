@@ -12,27 +12,29 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.fruitmarket.fruit.Fruit;
 
 @RestController
+@RequestMapping("/vendor")
+
 public class VendorController {
 	
 	@Autowired
 	private VendorService vendorService;
 	
-	@RequestMapping("/vendor")
+	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<Vendor> getAll() {
 		return vendorService.getAllVendors();
 	}
 	
-	@RequestMapping("/vendor/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public Vendor get(@PathVariable String id) {
 		return vendorService.getVendor(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/vendor")
+	@RequestMapping(method = RequestMethod.POST, value = "")
 	public void create(@RequestBody Vendor vendor) {
 		vendorService.createVendor(vendor);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/vendor/{id}")
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}/addFruits")
 	public void addFruits(@RequestBody List<Fruit> fruits, @PathVariable String id) {
 		vendorService.addFruits(id, fruits);
 	}

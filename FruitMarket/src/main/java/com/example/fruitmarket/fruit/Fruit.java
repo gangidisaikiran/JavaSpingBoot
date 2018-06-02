@@ -19,15 +19,11 @@ public class Fruit {
 	@Column(name = "FRUIT_ID")
 	private String id;
 	private String name;
-	private int quantity;
-	private Date expiryDate;
 		
-	public Fruit(String id, String name, int quantity, Date expiryDate) {
+	public Fruit(String id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.quantity = quantity;
-		this.expiryDate = expiryDate;
 	}
 	
 	public Fruit() {
@@ -45,18 +41,5 @@ public class Fruit {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public Date getExpiryDate() {
-		return expiryDate;
-	}
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
-	}
-	
-	
+
 }

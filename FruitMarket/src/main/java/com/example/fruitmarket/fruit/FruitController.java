@@ -10,32 +10,33 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Fruits")
 public class FruitController {
 	
 	@Autowired
 	private FruitService fruitService;
 	
-	@RequestMapping("/Fruits")
+	@RequestMapping(method = RequestMethod.GET, value = "")
 	public List<Fruit> getAllFruits() {
 		return fruitService.getAllFruits();
 	}
 	
-	@RequestMapping("/Fruits/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public Fruit getFruit(@PathVariable String id) {
 		return fruitService.getFruit(id);
 	}
 	
-	@RequestMapping(method= RequestMethod.POST, value = "/Fruits")
+	@RequestMapping(method= RequestMethod.POST, value = "")
 	public void addFruit(@RequestBody Fruit fruit) {
 		fruitService.addFruit(fruit);
 	}
 	
-	@RequestMapping(method= RequestMethod.PUT, value = "/Fruits")
+	@RequestMapping(method= RequestMethod.PUT, value = "")
 	public void updateFruit(@RequestBody Fruit fruit) {
 		fruitService.updateFruit(fruit);
 	}
 	
-	@RequestMapping(method= RequestMethod.DELETE, value = "/Fruits/{id}")
+	@RequestMapping(method= RequestMethod.DELETE, value = "/{id}")
 	public void deleteFruit(@PathVariable String id) {
 		fruitService.deleteFruit(id);
 	}
