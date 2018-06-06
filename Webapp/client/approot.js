@@ -10,6 +10,7 @@ import {syncHistoryWithStore} from 'react-router-redux';
 // import your components
 import Main from './components/Main';
 import LandingContainer from './components/landing/LandingContainer';
+import VendorContainer from './components/VendorContainer';
 import 'Styles/root.css';
 
 injectTapEventPlugin();
@@ -19,13 +20,14 @@ const history = syncHistoryWithStore(hashHistory, store);
 store.runSaga(rootSaga);
 
 const router = (
-    <Provider store={store}>
-        <Router history={history}>
-            <Route path='/' component={Main}>
-                <IndexRoute component={LandingContainer}/>
-            </Route>
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path='/' component={Main}>
+        <IndexRoute component={LandingContainer}/>
+        <Route path='/vendor/:vendorId' component={VendorContainer}/>
+      </Route>
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(

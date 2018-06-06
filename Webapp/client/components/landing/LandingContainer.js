@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {hashHistory} from 'react-router';
 import {Paper} from 'material-ui';
 import {Col, Grid, Row} from 'react-flexbox-grid';
 import {overlayColor, brandColor} from 'Assets/theme/application.theme';
@@ -55,8 +56,10 @@ class LandingContainer extends React.Component {
   }
 
   handleVendorSelection(value) {
-    this.setState({value: this.props.vendor.vendorList[value].id});
-    this.setState({selectedVendor: this.props.vendor.vendorList[value]});
+    let selectedVendor = this.props.vendor.vendorList[value];
+    this.setState({value: selectedVendor.id});
+    this.setState({selectedVendor: selectedVendor});
+    hashHistory.push(`/vendor/${selectedVendor.id}`);
   }
 
   renderLoader() {
@@ -72,7 +75,7 @@ class LandingContainer extends React.Component {
   renderVendorQuestionnaire() {
     return (
       <Row center="xs">
-        <div style={{textAlign: 'unset'}}>
+        <div style={{textAlign: 'left'}}>
           <TextField
             hintText="Vendor Name"
             floatingLabelText="Vendor Name"

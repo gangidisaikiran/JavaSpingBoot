@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/Fruits")
+@RequestMapping("/fruit")
 public class FruitController {
 	
 	@Autowired
@@ -27,8 +27,8 @@ public class FruitController {
 	}
 	
 	@RequestMapping(method= RequestMethod.POST, value = "")
-	public void addFruit(@RequestBody Fruit fruit) {
-		fruitService.addFruit(fruit);
+	public Fruit addFruit(@RequestBody Fruit fruit) {
+		return fruitService.addFruit(fruit);
 	}
 	
 	@RequestMapping(method= RequestMethod.PUT, value = "")

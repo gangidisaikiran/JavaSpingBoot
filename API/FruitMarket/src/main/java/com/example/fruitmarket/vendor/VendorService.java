@@ -36,12 +36,14 @@ public class VendorService {
 		return newVendor;
 	}
 
-	public void addFruits(long id, List<VendorFruit> vendorFruits) {
+	public Iterable<VendorFruit> addFruits(long id, List<VendorFruit> vendorFruits) {
 		Vendor vendor = vendorRepository.findById(id).get();
+		ArrayList<VendorFruit> newVendorFruits = new ArrayList<VendorFruit>();
 		vendorFruits.forEach(vendorFruit -> {
 			vendorFruit.setFruit(fruitRepository.findById(vendorFruit.getFruit().getId()).get());
 			vendorFruit.setVendor(vendor);
-			vendorFruitRepository.save(vendorFruit);
+			newVendorFruits.add(vendorFruit);
 		});
+		return vendorFruitRepository.saveAll(newVendorFruits);
 	}
 }

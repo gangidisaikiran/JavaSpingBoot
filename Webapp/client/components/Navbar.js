@@ -18,7 +18,7 @@ class Navbar extends React.Component {
     return (
       <div>
         <AppBar
-          title="Fruit Market"
+          title="Fruit Mart"
           style={{backgroundColor: '#FFF'}}
           className="navbar"
           iconStyleLeft={this.styles.logo}

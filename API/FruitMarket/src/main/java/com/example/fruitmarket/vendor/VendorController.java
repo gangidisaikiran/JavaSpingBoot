@@ -35,8 +35,8 @@ public class VendorController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}/addFruits")
-	public void addFruits(@RequestBody List<VendorFruit> fruits, @PathVariable long id) {
-		vendorService.addFruits(id, fruits);
+	public Iterable<VendorFruit> addFruits(@RequestBody List<VendorFruit> fruits, @PathVariable long id) {
+		return vendorService.addFruits(id, fruits);
 	}
 
 }

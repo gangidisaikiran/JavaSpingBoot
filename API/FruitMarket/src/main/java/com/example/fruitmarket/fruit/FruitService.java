@@ -24,8 +24,8 @@ public class FruitService {
 		
 	}
 
-	public void addFruit(Fruit fruit) {
-		fruitRepository.save(fruit);
+	public Fruit addFruit(Fruit fruit) {
+		return fruitRepository.save(fruit);
 	}
 
 	public void deleteFruit(long id) {
