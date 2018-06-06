@@ -9,6 +9,11 @@ export const FETCH_SELECTED_VENDORS_RESPONSE = "FETCH_SELECTED_VENDORS_RESPONSE"
 export const ADD_FRUITS_TO_VENDOR_REQUEST = "ADD_FRUITS_TO_VENDOR_REQUEST";
 export const ADD_FRUITS_TO_VENDOR_RESPONSE = "ADD_FRUITS_TO_VENDOR_RESPONSE";
 
+export const BUY_FRUITS_REQUEST = "BUY_FRUITS_REQUEST";
+export const BUY_FRUITS_RESPONSE = "BUY_FRUITS_RESPONSE";
+export const SELL_FRUITS_REQUEST = "SELL_FRUITS_REQUEST";
+export const SELL_FRUITS_RESPONSE = "SELL_FRUITS_RESPONSE";
+
 export function fetchVendorsRequest() {
   return {
     type: FETCH_VENDORS_REQUEST
@@ -63,6 +68,38 @@ export function addFruitsToVendorResponse(id, data) {
   return {
     type: ADD_FRUITS_TO_VENDOR_RESPONSE,
     id,
+    data
+  }
+}
+
+export function buyFruitsRequest(id, fruitId, quantity) {
+  return {
+    type: BUY_FRUITS_REQUEST,
+    id,
+    fruitId,
+    quantity
+  }
+}
+
+export function buyFruitsResponse(data) {
+  return {
+    type: BUY_FRUITS_RESPONSE,
+    data
+  }
+}
+
+export function sellFruitsRequest(id, fruitId, quantity) {
+  return {
+    type: SELL_FRUITS_REQUEST,
+    id,
+    fruitId,
+    quantity
+  }
+}
+
+export function sellFruitsResponse(data) {
+  return {
+    type: SELL_FRUITS_RESPONSE,
     data
   }
 }

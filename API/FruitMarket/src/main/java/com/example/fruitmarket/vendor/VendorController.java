@@ -38,5 +38,15 @@ public class VendorController {
 	public Iterable<VendorFruit> addFruits(@RequestBody List<VendorFruit> fruits, @PathVariable long id) {
 		return vendorService.addFruits(id, fruits);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}/buyFruits/{fruitId}")
+	public Iterable<VendorFruit> buyFruits(@RequestBody Quantity quantity, @PathVariable long id, @PathVariable long fruitId) {
+		return vendorService.buyFruits(id, fruitId, quantity.getQuantity());
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/{id}/sellFruits/{fruitId}")
+	public Iterable<VendorFruit> sellFruits(@RequestBody Quantity quantity, @PathVariable long id, @PathVariable long fruitId) throws Exception {
+		return vendorService.sellFruits(id, fruitId, quantity.getQuantity());
+	}
 
 }

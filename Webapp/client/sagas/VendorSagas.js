@@ -2,6 +2,7 @@ import {takeEvery, takeLatest} from 'redux-saga';
 import {put, call, select, fork} from 'redux-saga/effects';
 import {HttpHelper} from '../utils/apis';
 import * as vendorActions from '../actions/VendorActions';
+import * as commonActions from '../actions/CommonActions';
 
 function *fetchVendors(params) {
   const response = yield call(
@@ -31,6 +32,27 @@ function *addFruitsToVendor(params) {
   yield put(vendorActions.addFruitsToVendorResponse(params.id, response.data));
 }
 
+
+function *buyFruits(params) {
+  const response = yield call(
+    HttpHelper, `vendor/${params.id}/buyFruits/${params.fruitId}`, 'POST', {quantity: params.quantity}, null
+  );
+  yield put(vendorActions.buyFruitsResponse(params.id, response.data));
+}
+
+function *sellFruits(params) {
+  const response = yield call(
+    HttpHelper, `vendor/${params.id}/sellFruits/${params.fruitId}`, 'POST', {quantity: params.quantity}, null
+  );
+  if (response.status == 200 || response.status == 201 || response.status == 204) {
+    yield put(vendorActions.buyFruitsResponse(params.id, response.data));
+  }
+  else {
+    debugger;
+    yield put(commonActions.openSnackbar(response.data.message));
+  }
+}
+
 /*
  Watchers
  */
@@ -51,11 +73,21 @@ function *watchAddFruitsToVendor() {
   yield *takeLatest(vendorActions.ADD_FRUITS_TO_VENDOR_REQUEST, addFruitsToVendor);
 }
 
+function *watchBuyFruits() {
+  yield *takeLatest(vendorActions.BUY_FRUITS_REQUEST, buyFruits);
+}
+
+function *watchSellFruits() {
+  yield *takeLatest(vendorActions.SELL_FRUITS_REQUEST, sellFruits);
+}
+
 export default function *vendorSagas() {
   yield [
     fork(watchFetchVendors),
     fork(watchCreateVendor),
     fork(watchFetchSelectedVendor),
-    fork(watchAddFruitsToVendor)
+    fork(watchAddFruitsToVendor),
+    fork(watchBuyFruits),
+    fork(watchSellFruits)
   ]
 }

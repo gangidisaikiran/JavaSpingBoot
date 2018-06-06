@@ -46,4 +46,35 @@ public class VendorService {
 		});
 		return vendorFruitRepository.saveAll(newVendorFruits);
 	}
+
+	public Iterable<VendorFruit> buyFruits(long id, long fruitId, int quantity) {
+		Fruit fruit = fruitRepository.findById(fruitId).get();
+		Vendor vendor = vendorRepository.findById(id).get();
+		ArrayList<VendorFruit> vendorFruitList = new ArrayList<VendorFruit>(vendorFruitRepository.findByFruitAndVendor(fruit, vendor));
+		if (vendorFruitList.size() > 0)
+		{
+			VendorFruit vendorFruit = vendorFruitList.get(0);
+			vendorFruit.setQuantity(vendorFruit.getQuantity() + quantity);
+			vendorFruitRepository.save(vendorFruit);
+		}
+		return null;
+	}
+	
+	public Iterable<VendorFruit> sellFruits(long id, long fruitId, int quantity) throws Exception {
+		Fruit fruit = fruitRepository.findById(fruitId).get();
+		Vendor vendor = vendorRepository.findById(id).get();
+		ArrayList<VendorFruit> vendorFruitList = new ArrayList<VendorFruit>(vendorFruitRepository.findByFruitAndVendor(fruit, vendor));
+		if (vendorFruitList.size() > 0)
+		{
+			VendorFruit vendorFruit = vendorFruitList.get(0);
+			if (vendorFruit.getQuantity() < quantity)
+			{
+				throw new Exception("Value exceeds existing quantity");
+			}
+			vendorFruit.setQuantity(vendorFruit.getQuantity() - quantity);
+			vendorFruitRepository.save(vendorFruit);
+		}
+		return null;
+	}
+
 }
