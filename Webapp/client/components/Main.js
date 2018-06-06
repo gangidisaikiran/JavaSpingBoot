@@ -13,7 +13,9 @@ class Main extends React.Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <Navbar/>
-          {React.cloneElement(this.props.children, this.props)}
+          <div style={{marginTop: 80}}>
+            {React.cloneElement(this.props.children, this.props)}
+          </div>
         </div>
       </MuiThemeProvider>
     );

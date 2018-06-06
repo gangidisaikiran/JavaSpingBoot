@@ -11,6 +11,7 @@
   "author": "Sai Kiran Reddy Gangidi",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "classnames": "^2.2.5",
     "dotenv": "^2.0.0",
     "es6-promise": "^4.0.3",

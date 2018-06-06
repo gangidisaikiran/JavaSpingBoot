@@ -31,8 +31,9 @@ public class VendorService {
 		return vendorRepository.findById(id).get();
 	}
 
-	public void createVendor(Vendor vendor) {
-		vendorRepository.save(vendor);
+	public Vendor createVendor(Vendor vendor) {
+		Vendor newVendor = vendorRepository.save(vendor);
+		return newVendor;
 	}
 
 	public void addFruits(long id, List<VendorFruit> vendorFruits) {

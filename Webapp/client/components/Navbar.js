@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, FlatButton} from 'material-ui';
+import {AppBar} from 'material-ui';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -19,11 +19,11 @@ class Navbar extends React.Component {
       <div>
         <AppBar
           title="Fruit Market"
+          style={{backgroundColor: '#FFF'}}
           className="navbar"
           iconStyleLeft={this.styles.logo}
           iconElementLeft={<img style={{width: 50}} src={require('Images/logo.png')}/>}
         />
-        <div className="navbar-highlight"/>
       </div>
     );
   }

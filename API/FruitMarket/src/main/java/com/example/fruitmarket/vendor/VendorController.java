@@ -30,8 +30,8 @@ public class VendorController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "")
-	public void create(@RequestBody Vendor vendor) {
-		vendorService.createVendor(vendor);
+	public Vendor create(@RequestBody Vendor vendor) {
+		return vendorService.createVendor(vendor);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/{id}/addFruits")
